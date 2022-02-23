@@ -14,100 +14,152 @@ When all prompts answered, password is generated
 Generated password is shown in an alert or displayed on the page
 */
 
-var passwordLength = function () {
-  var promptLength = window.prompt(
-    "How long would you like your password to be? Please choose a number from 8 to 128."
+var promptLength = window.prompt(
+  "How long would you like your password to be? Please choose a number from 8 to 128."
+);
+if (
+  promptLength === "" ||
+  promptLength === null ||
+  promptLength < 8 ||
+  promptLength > 128
+) {
+  window.alert(
+    "Your selection is invalid. Please choose a number from 8 to 128."
   );
+} else {
+  promptLength = parseInt(promptLength);
+}
+
+var promptUpper = window.prompt(
+  "Would you like to include uppercase letters? Please enter 'Yes' or 'No.'"
+);
+if (promptUpper === "" || promptUpper === null) {
+  window.alert("Your selection is invalid. Please answer 'Yes' or 'No.'");
+}
+// else if (promptUpper === "Yes" || promptUpper === "yes") {
+//   return promptUpper;
+// }
+
+var promptLower = window.prompt(
+  "Would you like to include lowercase letters? Please enter 'Yes' or 'No.'"
+);
+if (promptLower === "" || promptLower === null) {
+  window.alert("Your selection is invalid. Please answer 'Yes' or 'No.'");
+}
+// else if (promptLower === "Yes" || promptLower === "yes") {
+//   return promptLower;
+// }
+
+var promptNum = window.prompt(
+  "Would you like to include numbers? Please enter 'Yes' or 'No.'"
+);
+if (promptNum === "" || promptNum === null) {
+  window.alert("Your selection is invalid. Please answer 'Yes' or 'No.'");
+}
+// else if (promptNum === "Yes" || promptNum === "yes") {
+//   return promptNum;
+// }
+
+var promptSpecial = window.prompt(
+  "Would you like to include special characters? Please enter 'Yes' or 'No.'"
+);
+if (promptSpecial === "" || promptSpecial === null) {
+  window.alert("Your selection is invalid. Please answer 'Yes' or 'No.'");
+}
+// else if (promptSpecial === "Yes" || promptSpecial === "yes") {
+//   return promptSpecial;
+// }
+
+function generatePassword(length) {
+  var password = "";
   if (
-    promptLength === "" ||
-    promptLength === null ||
-    promptLength <= 8 ||
-    promptLength >= 128
+    promptUpper === "Yes" &&
+    promptLower === "Yes" &&
+    promptNum === "Yes" &&
+    promptSpecial === "Yes"
   ) {
-    window.alert(
-      "Your selection is invalid. Please choose a number from 8 to 128."
-    );
-    return passwordLength();
-  } else {
-    promptLength = parseInt(promptLength);
-    return promptLength;
+    var characters =
+      "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz123456789!@#$%^&*";
+  } else if (
+    promptUpper === "No" &&
+    promptLower === "Yes" &&
+    promptNum === "Yes" &&
+    promptSpecial === "Yes"
+  ) {
+    var characters = "abcdefghijklmnopqrstuvwxyz123456789!@#$%^&*";
+  } else if (
+    promptUpper === "Yes" &&
+    promptLower === "No" &&
+    promptNum === "Yes" &&
+    promptSpecial === "Yes"
+  ) {
+    var characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ123456789!@#$%^&*";
+  } else if (
+    promptUpper === "Yes" &&
+    promptLower === "No" &&
+    promptNum === "Yes" &&
+    promptSpecial === "No"
+  ) {
+    var characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ123456789";
+  } else if (
+    promptUpper === "No" &&
+    promptLower === "Yes" &&
+    promptNum === "Yes" &&
+    promptSpecial === "No"
+  ) {
+    var characters = "abcdefghijklmnopqrstuvwxyz123456789";
+  } else if (
+    promptUpper === "No" &&
+    promptLower === "Yes" &&
+    promptNum === "No" &&
+    promptSpecial === "Yes"
+  ) {
+    var characters = "abcdefghijklmnopqrstuvwxyz!@#$%^&*";
+  } else if (
+    promptUpper === "Yes" &&
+    promptLower === "No" &&
+    promptNum === "No" &&
+    promptSpecial === "Yes"
+  ) {
+    var characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ!@#$%^&*";
+  } else if (
+    promptUpper === "No" &&
+    promptLower === "No" &&
+    promptNum === "Yes" &&
+    promptSpecial === "Yes"
+  ) {
+    var characters = "123456789!@#$%^&*";
+  } else if (
+    promptUpper === "No" &&
+    promptLower === "No" &&
+    promptNum === "No" &&
+    promptSpecial === "Yes"
+  ) {
+    var characters = "!@#$%^&*";
+  } else if (
+    promptUpper === "No" &&
+    promptLower === "No" &&
+    promptNum === "Yes" &&
+    promptSpecial === "No"
+  ) {
+    var characters = "123456789";
   }
-};
 
-const password = {
-  length: passwordLength(),
-  lettersUpper: ABCDEFGHIJKLMNOPQRSTUVWXYZ,
-  lettersLower: abcdefghijklmnopqrstuvwxyz,
-  // charactersSpecial: !@#$%^&*,
-  charactersNum: 1234567890,
-};
+  var charactersLength = characters.length;
+  for (var i = 0; i < length; i++) {
+    password += characters.charAt(Math.floor(Math.random() * charactersLength));
+  }
+  return password;
+}
 
-generatePassword = function () {
-  passwordLength();
-  var passwordLower = function () {
-    var promptLower = window.prompt(
-      "Would you like to include lowercase letters? Please enter 'Yes' or 'No.'"
-    );
-    if (promptLower === "" || promptLower === null) {
-      window.alert("Your selection is invalid. Please answer 'Yes' or 'No.'");
-      return passwordLower();
-    } else if (promptLower === "Yes" || promptLower === "yes") {
-      return promptLower;
-    }
-  };
-
-  passwordLower();
-
-  var passwordUpper = function () {
-    var promptUpper = window.prompt(
-      "Would you like to include uppercase letters? Please enter 'Yes' or 'No.'"
-    );
-    if (promptUpper === "" || promptUpper === null) {
-      window.alert("Your selection is invalid. Please answer 'Yes' or 'No.'");
-      return passwordUpper();
-    } else if (promptUpper === "Yes" || promptUpper === "yes") {
-      return promptUpper;
-    }
-  };
-
-  passwordUpper();
-
-  var passwordNum = function () {
-    var promptNum = window.prompt(
-      "Would you like to include numbers? Please enter 'Yes' or 'No.'"
-    );
-    if (promptNum === "" || promptNum === null) {
-      window.alert("Your selection is invalid. Please answer 'Yes' or 'No.'");
-      return passwordNum();
-    } else if (promptNum === "Yes" || promptNum === "yes") {
-      return promptNum;
-    }
-  };
-
-  passwordNum();
-
-  var passwordSpecial = function () {
-    var promptSpecial = window.prompt(
-      "Would you like to include special characters? Please enter 'Yes' or 'No.'"
-    );
-    if (promptSpecial === "" || promptSpecial === null) {
-      window.alert("Your selection is invalid. Please answer 'Yes' or 'No.'");
-      return passwordSpecial();
-    } else if (promptSpecial === "Yes" || promptSpecial === "yes") {
-      return promptNum;
-    }
-  };
-  passwordSpecial();
-
-  for (var i = 0; i < password.length; i++) {}
-};
+console.log(generatePassword(promptLength));
 
 // Get references to the #generate element
 var generateBtn = document.querySelector("#generate");
 
 // Write password to the #password input
 function writePassword() {
-  var password = generatePassword();
+  var password = generatePassword(promptLength);
   var passwordText = document.querySelector("#password");
 
   passwordText.value = password;
