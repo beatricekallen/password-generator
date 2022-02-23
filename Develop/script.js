@@ -81,6 +81,22 @@ function generatePassword(length) {
     var characters =
       "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz123456789!@#$%^&*";
   } else if (
+    promptUpper === "Yes" &&
+    promptLower === "Yes" &&
+    promptNum === "Yes" &&
+    promptSpecial === "No"
+  ) {
+    var characters =
+      "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz123456789";
+  } else if (
+    promptUpper === "Yes" &&
+    promptLower === "Yes" &&
+    promptNum === "No" &&
+    promptSpecial === "Yes"
+  ) {
+    var characters =
+      "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz!@#$%^&*";
+  } else if (
     promptUpper === "No" &&
     promptLower === "Yes" &&
     promptNum === "Yes" &&
@@ -102,6 +118,20 @@ function generatePassword(length) {
   ) {
     var characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ123456789";
   } else if (
+    promptUpper === "Yes" &&
+    promptLower === "Yes" &&
+    promptNum === "No" &&
+    promptSpecial === "No"
+  ) {
+    var characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
+  } else if (
+    promptUpper === "Yes" &&
+    promptLower === "No" &&
+    promptNum === "No" &&
+    promptSpecial === "Yes"
+  ) {
+    var characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ!@#$%^&*";
+  } else if (
     promptUpper === "No" &&
     promptLower === "Yes" &&
     promptNum === "Yes" &&
@@ -116,19 +146,26 @@ function generatePassword(length) {
   ) {
     var characters = "abcdefghijklmnopqrstuvwxyz!@#$%^&*";
   } else if (
-    promptUpper === "Yes" &&
-    promptLower === "No" &&
-    promptNum === "No" &&
-    promptSpecial === "Yes"
-  ) {
-    var characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ!@#$%^&*";
-  } else if (
     promptUpper === "No" &&
     promptLower === "No" &&
     promptNum === "Yes" &&
     promptSpecial === "Yes"
   ) {
     var characters = "123456789!@#$%^&*";
+  } else if (
+    promptUpper === "Yes" &&
+    promptLower === "No" &&
+    promptNum === "No" &&
+    promptSpecial === "No"
+  ) {
+    var characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+  } else if (
+    promptUpper === "No" &&
+    promptLower === "Yes" &&
+    promptNum === "No" &&
+    promptSpecial === "No"
+  ) {
+    var characters = "abcdefghijklmnopqrstuvwxyz";
   } else if (
     promptUpper === "No" &&
     promptLower === "No" &&
