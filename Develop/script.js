@@ -1,19 +1,22 @@
 // Assignment code here
 function generatePassword() {
-  var promptLength = window.prompt(
-    "How long would you like your password to be? Please choose a number from 8 to 128."
+  var promptLength = parseInt(
+    window.prompt(
+      "How long would you like your password to be? Please choose a number from 8 to 128."
+    )
   );
-  if (
-    promptLength === "" ||
+
+  while (
+    Number.isNaN(promptLength) ||
     promptLength === null ||
     promptLength < 8 ||
     promptLength > 128
   ) {
-    window.alert(
-      "Your selection is invalid. Please choose a number from 8 to 128."
+    var promptLength = parseInt(
+      window.prompt(
+        "Your selection is invalid. Please choose a number from 8 to 128."
+      )
     );
-  } else {
-    promptLength = parseInt(promptLength);
   }
 
   var promptUpper = window.confirm("Click OK to include uppercase letters.");
